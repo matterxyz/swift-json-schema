@@ -34,7 +34,7 @@ let package = Package(
   dependencies: [
     .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.0.0"),
     .package(url: "https://github.com/swiftlang/swift-syntax", from: "600.0.1"),
-    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.6"),
+    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.0"),
   ],
   targets: [
     // Library that defines the JSON schema related types.
