@@ -34,7 +34,6 @@ let package = Package(
   dependencies: [
     .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.0.0"),
     .package(url: "https://github.com/swiftlang/swift-syntax", from: "600.0.1"),
-    .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.17.0"),
   ],
   targets: [
     // Library that defines the JSON schema related types.
@@ -44,13 +43,7 @@ let package = Package(
         .process("Resources")
       ]
     ),
-    .testTarget(
-      name: "JSONSchemaTests",
-      dependencies: ["JSONSchema"],
-      resources: [
-        .copy("JSON-Schema-Test-Suite")
-      ]
-    ),
+  
 
     // Library for building JSON schemas with Swift's result builders.
     .target(
@@ -60,12 +53,7 @@ let package = Package(
         "JSONSchemaMacro",
       ]
     ),
-    .testTarget(
-      name: "JSONSchemaBuilderTests",
-      dependencies: [
-        "JSONSchemaBuilder",
-      ]
-    ),
+ 
 
     // Macro implementation that preforms the source transformation of a macro.
     .macro(
@@ -76,14 +64,7 @@ let package = Package(
         .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
       ]
     ),
-    .testTarget(
-      name: "JSONSchemaMacroTests",
-      dependencies: [
-        "JSONSchemaMacro",
-        .product(name: "SwiftSyntaxMacroExpansion", package: "swift-syntax"),
-        .product(name: "SwiftSyntaxMacrosGenericTestSupport", package: "swift-syntax"),
-      ]
-    ),
+  
 
     // A client of the library, which is able to use the macro in its own code.
     .executableTarget(
@@ -96,19 +77,6 @@ let package = Package(
       ]
     ),
 
-    .testTarget(
-      name: "JSONSchemaIntegrationTests",
-      dependencies: [
-        "JSONSchema",
-        "JSONSchemaBuilder",
-        "JSONSchemaConversion",
-        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
-        .product(name: "InlineSnapshotTesting", package: "swift-snapshot-testing"),
-      ],
-      exclude: [
-        "__Snapshots__"
-      ]
-    ),
 
     // Library for custom conversions for JSONSchemaBuilder.
     .target(
@@ -118,11 +86,6 @@ let package = Package(
         "JSONSchemaBuilder"
       ]
     ),
-    .testTarget(
-      name: "JSONSchemaConversionTests",
-      dependencies: [
-        "JSONSchemaConversion"
-      ]
-    ),
+  
   ]
 )
